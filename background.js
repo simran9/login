@@ -16,18 +16,24 @@ window.onload = function() {
         var meta1 = JSON.parse(window.localStorage.getItem("store"));
         meta1[name]=password;
         window.localStorage.setItem("store", JSON.stringify(meta1));
+        window.localStorage.setItem("flag", false);
+        alert("Registration successful")
        }catch(error){
           si ={};
           si[name]=password;
           window.localStorage.setItem("store", JSON.stringify(si));
+          alert("Registration successful")
        } 
+       document.getElementById('myText').value="";
+       document.getElementById('myText1').value="";
+      
   }
   function reload_it()
   {
     var name = document.getElementById('myText').value;
     var password = document.getElementById('myText1').value;
     var meta1 = JSON.parse(window.localStorage.getItem("store"));
-    window.localStorage.setItem("flag", true);
+    window.localStorage.setItem("flag", false);
     
     if(meta1[name] == password){
       window.localStorage.setItem("flag", true);

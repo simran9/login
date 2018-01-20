@@ -3,12 +3,25 @@
 <head>
   <meta charset="utf-8">
   <title>Description</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link href="bootstrap.min.css" rel="stylesheet">
+    <link href="signin.css" rel="stylesheet">
   <script src="background.js"></script>
 </head>
 <body>
-Name: <input type="text" id="myText" name="fname"><br>
-password: <input type="password" id="myText1" name="fname1"><br>
-<input type="button" id="save" value = "Register">
-<input type="button" id="save1" value = "Login">
+	<div class="container">
+		<form class="form-signin">
+	        <h2 class="form-signin-heading">Please sign in</h2>
+	        <label for="inputEmail" class="sr-only">Email address</label>
+
+	        <input type="email" id="myText"  class="form-control" placeholder="Email address" required autofocus><br>
+			<label for="inputPassword" class="sr-only">Password</label>
+			<input type="password" id="myText1" class="form-control" placeholder="Password" required><br>
+			<input type="button" class="btn btn-lg btn-primary btn-block" id="save" value = "Register">
+			<input type="button" class="btn btn-lg btn-primary btn-block" id="save1" value = "Login">
+		</form>
+    </div>
 </body>
 </html>
