@@ -10,32 +10,33 @@ window.onload = function() {
 
   function save_all()
   {
-   
       var name = document.getElementById('myText').value;
-      var fas = document.getElementById('myText1').value;
+      var password = document.getElementById('myText1').value;
       try{
-        var meta1 = JSON.parse(window.localStorage.getItem("lastname"));
-        meta1[name]=fas;
-        window.localStorage.setItem("lastname", JSON.stringify(meta1));
+        var meta1 = JSON.parse(window.localStorage.getItem("store"));
+        meta1[name]=password;
+        window.localStorage.setItem("store", JSON.stringify(meta1));
        }catch(error){
           si ={};
-          si[name]=fas;
-          window.localStorage.setItem("lastname", JSON.stringify(meta1));
-       }
-      
+          si[name]=password;
+          window.localStorage.setItem("store", JSON.stringify(si));
+       } 
   }
   function reload_it()
   {
     var name = document.getElementById('myText').value;
-    var fas = document.getElementById('myText1').value;
-    var meta1 = JSON.parse(window.localStorage.getItem("lastname"));
-    if(meta1[name] == fas){
-      console.log("successful")
-      for (i in meta1){
-        console.log(i)
-      }
+    var password = document.getElementById('myText1').value;
+    var meta1 = JSON.parse(window.localStorage.getItem("store"));
+    window.localStorage.setItem("flag", false);
+    window.localStorage.setItem("login_details",name.toString());
+    if(meta1[name] == password){
+      window.localStorage.setItem("flag", true);
+      window.location = "login.html"
     }
-    else
-      console.log("not successful")
+    else{
+      window.localStorage.setItem("flag", false);
+      window.location = "index.html"
+      alert("wrong username or password")
+    }
   }
 }

@@ -1,0 +1,22 @@
+<html>
+     <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+
+     <script>
+        var app = angular.module('myApp', []);
+        app.controller('myCtrl', function($scope) {
+        	var meta1 = JSON.parse(window.localStorage.getItem("store"));
+            var a = window.localStorage.getItem("login_details")
+            //console.log(meta1)
+            $scope.framework= a
+        });
+    </script>
+
+    <body>
+
+        <div ng-app="myApp" ng-controller="myCtrl">
+
+            <p>Welcome  {{ framework }}</p>
+        </div>
+
+    </body>
+</html>
