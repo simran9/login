@@ -27,10 +27,11 @@ window.onload = function() {
     var name = document.getElementById('myText').value;
     var password = document.getElementById('myText1').value;
     var meta1 = JSON.parse(window.localStorage.getItem("store"));
-    window.localStorage.setItem("flag", false);
-    window.localStorage.setItem("login_details",name.toString());
+    window.localStorage.setItem("flag", true);
+    
     if(meta1[name] == password){
       window.localStorage.setItem("flag", true);
+      window.localStorage.setItem("login_details",name.toString());
       window.location = "login.html"
     }
     else{

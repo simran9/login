@@ -4,10 +4,17 @@
      <script>
         var app = angular.module('myApp', []);
         app.controller('myCtrl', function($scope) {
-        	var meta1 = JSON.parse(window.localStorage.getItem("store"));
-            var a = window.localStorage.getItem("login_details")
-            //console.log(meta1)
-            $scope.framework= a
+        	if(window.localStorage.getItem("flag") == "true"){
+	        	var meta1 = JSON.parse(window.localStorage.getItem("store"));
+	            var a = window.localStorage.getItem("login_details")
+	            a = "Welcome "+a
+	            $scope.framework= a
+
+	            $scope.records = meta1
+        	}else
+        	{
+        		$scope.framework = "You have not logged in , please login"
+        	}
         });
     </script>
 
@@ -15,7 +22,11 @@
 
         <div ng-app="myApp" ng-controller="myCtrl">
 
-            <p>Welcome  {{ framework }}</p>
+            <h1>{{ framework }}</h1>
+            <ol>
+            	<li ng-repeat="(key, value) in records">{{key}}</li>
+            </ol>
+
         </div>
 
     </body>
