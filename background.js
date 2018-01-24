@@ -14,10 +14,14 @@ window.onload = function() {
       var password = document.getElementById('myText1').value;
       try{
         var meta1 = JSON.parse(window.localStorage.getItem("store"));
+        if (name in meta1){ 
+          alert("User name already exist")}
+        else{
         meta1[name]=password;
         window.localStorage.setItem("store", JSON.stringify(meta1));
         window.localStorage.setItem("flag", false);
         alert("Registration successful")
+      }
        }catch(error){
           si ={};
           si[name]=password;
