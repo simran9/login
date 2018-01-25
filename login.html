@@ -29,13 +29,14 @@
 	            $scope.framework= a
 
 	            $scope.records = meta1
-		            $scope.remove = function(item) { 
+	            // This function will delete the username
+		        $scope.remove = function(item) { 
 	  					delete meta1[item]   
 	  					window.localStorage.setItem("store", JSON.stringify(meta1));  
-					}
+				}
         	}else
         	{
-        		$scope.framework = "You have not logged in , please login"
+        		$scope.framework = "You have not logged in , please login "
         	}
         });
     </script>
