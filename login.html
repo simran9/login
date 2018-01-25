@@ -8,48 +8,67 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
   <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
   <script>
-  	window.onload = function() {
- 	 	document.getElementById('out').onclick = function()
-  		{
-      		//()
-      		window.localStorage.setItem("flag", false);
-      		window.location = "index.html"
-  		}
-  		if(window.localStorage.getItem("flag") == "false"){
-  			document.getElementById('out').value = "Go to login page"
-  		}
-
-  	}
+   window.onload = function() {
+    document.getElementById('out').onclick = function()
+    {
+        //()
+        window.localStorage.setItem("flag", false);
+        window.location = "index.html"
+    }
+    if(window.localStorage.getItem("flag") == "false"){
+     document.getElementById('out').value = "Go to login page"
+    }
+   }
         var app = angular.module('myApp', []);
         app.controller('myCtrl', function($scope) {
-        	if(window.localStorage.getItem("flag") == "true"){
-	        	var meta1 = JSON.parse(window.localStorage.getItem("store"));
-	            var a = window.localStorage.getItem("login_details")
-	            a = "Welcome "+a
-	            $scope.framework= a
+         if(window.localStorage.getItem("flag") == "true"){
+          var meta1 = JSON.parse(window.localStorage.getItem("store"));
+             var a = window.localStorage.getItem("login_details")
+             a = "Welcome "+a
+             $scope.framework= a
+             $scope.records = meta1
+               list = []
 
-	            $scope.records = meta1
-	            // This function will delete the username
-		        $scope.remove = function(item) { 
-	  					delete meta1[item]   
-	  					window.localStorage.setItem("store", JSON.stringify(meta1));  
-				}
-        	}else
-        	{
-        		$scope.framework = "You have not logged in , please login "
-        	}
+        for(i in meta1){
+          list.push(i)
+        }
+
+        $scope.names = list
+  
+        $scope.selectedList = {};
+             // This function will delete the username
+    
+           $scope.submit = function () {
+          angular.forEach($scope.selectedList, function (selected, name) {
+              if (selected) {
+                  delete meta1[name]   
+             window.localStorage.setItem("store", JSON.stringify(meta1));
+               list1 =[]
+              for(i in meta1){
+                 list1.push(i)
+
+                }
+                $scope.names = list1
+                $scope.selectedList = {};
+            }
+        });
+    };
+
+         }else
+         {
+          $scope.framework = "You have not logged in , please login "
+         }
         });
     </script>
 </head>
 <body>
-	<div ng-app="myApp" ng-controller="myCtrl" class="container">
-		 <h1>{{ framework }}</h1>
-            <ol class="list-group">
-            	<li ng-repeat="(key, value) in records" class="list-group">{{key}}
-            		<a class="btn" ng-click="remove(key)">Delete</a>
-            	</li>
-
-            </ol>
+ <div ng-app="myApp" ng-controller="myCtrl" class="container">
+   <h1>{{ framework }}</h1>
+        <span ng-repeat="name in names">
+            <input type="checkbox" id="{{name}}" ng-model="selectedList[name]"/>
+            <label for="{{name}}">{{name}}</label><br/>
+      </span><br/>
+      <button ng-click="submit()">Delete</button>
     </div>
     <div class="form-signin">
        <input type="button" class="btn btn-lg btn-primary btn-block" id="out" value="Logout">
